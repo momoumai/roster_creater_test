@@ -1,3 +1,4 @@
+// すべてのテストケースをテストする
 function testAllData(){
   for(let testCaseNum = 1; testCaseNum <= NUM_TEST_CASE; testCaseNum++){
     console.log(`テスト${testCaseNum}`);
@@ -6,9 +7,10 @@ function testAllData(){
   }
 }
 
+// 特定のテストケースのテストをする
 function testOneData(){
-  // checkPresentUserAssigned(1);
-  checkAvailableUserAssigned(1);
+  checkPresentUserAssigned(27);
+  checkAvailableUserAssigned(27);
 }
 
 function checkPresentUserAssigned(testCaseNum){
@@ -22,5 +24,4 @@ function checkAvailableUserAssigned(testCaseNum){
   const availableUserChecker = new AvailableUserChecker(testData);
   availableUserChecker.checkValidRoster();
 }
-
 

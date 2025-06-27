@@ -1,7 +1,7 @@
-// 当番が可能な利用者がその当番に割り当てられていることを検証するクラス
-
 class AvailableUserChecker{
 
+  // 当番が可能な利用者がその当番に割り当てられていることを検証するクラス
+  
   constructor(testData){
     this.userListData = testData.userListData;
     this.rosterData = testData.rosterData;
@@ -12,6 +12,7 @@ class AvailableUserChecker{
     this.dutyIndexToUserFlagMap = this.getDutyIndexToUserFlagMap();
   }
 
+  // すべての日付の当番割り当てが正しいかどうか確認する
   checkValidRoster(){
     for(let weekIndex = 0; weekIndex < NUM_WEEK; weekIndex++){
       if(this.isFullDayDuty){
@@ -24,6 +25,7 @@ class AvailableUserChecker{
     }
   }
 
+  // 特定の日付の当番割り当てが正しいかどうか確認する
   checkValidAssignment(timeFlameIndex, weekIndex){
     for(let dutyIndex = 0; dutyIndex < this.numDuty; dutyIndex++){
       const userNameToflagMap = this.dutyIndexToUserFlagMap.get(dutyIndex);
@@ -37,12 +39,14 @@ class AvailableUserChecker{
         if(flag === true){
           // console.log(`${cell}-OK`);
         } else {
+          // 当番が不可能な利用者が割り当てられていた場合にNGを表示
           console.log(`${cell} ${userName}-NG`);
         }
       }
     }
   }
 
+  // 当番のindexから利用者の当番可能フラグを取得
   getDutyIndexToUserFlagMap(){
     let dutyIndexToUserFlagMap = new Map();
     for(let dutyIndex = 0; dutyIndex < this.numDuty; dutyIndex++){

@@ -1,6 +1,6 @@
-// その日に通所予定の利用者が割り当てられていることを検証するクラス
-
 class PresentUserChecker{
+
+  // その日に通所予定の利用者が割り当てられていることを検証するクラス
 
   constructor(testData){
     this.userListData = testData.userListData;
@@ -16,6 +16,7 @@ class PresentUserChecker{
     }));
   }
 
+  // すべての日付の当番割り当てが正しいかどうか確認する
   checkValidRoster(){
     for(let weekIndex = 0; weekIndex < NUM_WEEK; weekIndex++){
       for(let weekDayIndex = 0; weekDayIndex < NUM_WEEKDAY; weekDayIndex++){
@@ -34,6 +35,7 @@ class PresentUserChecker{
     }
   }
 
+  // 特定の日付の当番割り当てが正しいかどうか確認する
   checkValidAssignment(date, row, column, timeFlameIndex, numTimeFlame){
     for(let dutyIndex = 0; dutyIndex < this.numDuty; dutyIndex++){
       const userNameRow = row + dutyIndex + 1 + timeFlameIndex;
@@ -44,11 +46,13 @@ class PresentUserChecker{
         if(res === true){
           // console.log(`${cell} ${userName}-OK`);
         } else {
+          // 通所予定でない利用者を割り当てていた場合にNGを表示
           console.log(`${cell}-NG`);
         }
     }
   }
 
+  // 利用者が通所予定かどうか
   checkUserPresent(date, userName, firstTimeFlameIndex, numTimeFlames){
     const column = date.getDate() - 1;
     const userIndex = this.userNameToIndexMap.get(userName);
